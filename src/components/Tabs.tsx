@@ -18,13 +18,19 @@ const Tab: FC = ({ children, active = 0 }) => {
 
   return (
     <div>
-      <ul>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+        }}
+      >
         {tabsData.map(({ tab }, idx) => (
-          <li>
+          <div>
             <a onClick={() => setActiveTab(idx)}>{tab}</a>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
       <div>{tabsData[activeTab] && tabsData[activeTab].children}</div>
     </div>
   );

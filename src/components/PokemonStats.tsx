@@ -51,43 +51,53 @@ export const PokemonStats = () => {
       content: capitalizeFirstLetter(species?.growth_rate.name),
     },
   ];
+
+  const tabContent = [
+    {
+      title: "Details",
+      content: <Stats stats={stats} />,
+    },
+    {
+      title: "Evolutions",
+      content: <EvolutionChain chainURL={species.evolution_chain.url} />,
+    },
+    {
+      title: "Types",
+      content: (
+        <div>
+          {pokemon.types.map((t: Type, idx: number) => {
+            return (
+              <div
+                key={idx}
+                style={{
+                  backgroundColor: Object.entries(PokemonTypeColor).filter(
+                    ([key, _]) => key === t.type.name
+                  )[0][1].light,
+                }}
+              >
+                <p>{t.type.name.toUpperCase()}</p>
+              </div>
+            );
+          })}
+        </div>
+      ),
+    },
+    {
+      title: "About",
+      content: species.flavor_text_entries.find(
+        (l: FlavorTextEntry) => l.language.name === "en"
+      )?.flavor_text,
+    },
+  ];
   return (
     <div>
-      <p key={pokemon.id}>
-        {
-          species.flavor_text_entries.find(
-            (l: FlavorTextEntry) => l.language.name === "en"
-          )?.flavor_text
-        }
-      </p>
-      <p>Pokemon Stats</p>
-      <div>
-        {pokemon.types.map((t: Type, idx: number) => {
-          return (
-            <div
-              key={idx}
-              style={{
-                backgroundColor: Object.entries(PokemonTypeColor).filter(
-                  ([key, _]) => key === t.type.name
-                )[0][1].medium,
-              }}
-            >
-              <p>{t.type.name.toUpperCase()}</p>
-            </div>
-          );
-        })}
-      </div>
-      <Stats stats={stats} />
-      <EvolutionChain chainURL={species.evolution_chain.url} />
-      <div>
-        <Tab active={1}>
-          {stats.map((tab: any, idx: number) => (
-            <Tab.TabPane key={`Tab-${idx}`} tab={tab.title}>
-              {tab.content}
-            </Tab.TabPane>
-          ))}
-        </Tab>
-      </div>
+      <Tab active={1}>
+        {tabContent.map((tab: any, idx: number) => (
+          <Tab.TabPane key={`Tab-${idx}`} tab={tab.title}>
+            {tab.content}
+          </Tab.TabPane>
+        ))}
+      </Tab>
     </div>
   );
 };
