@@ -73,7 +73,14 @@ const Home: NextPage = () => {
     }
   });
   return (
-    <div style={{ backgroundColor: "#f5fbfb", padding: "3em" }}>
+    <div
+      style={{
+        backgroundColor: "#f5fbfb",
+        padding: "3em",
+        maxWidth: "1000px",
+        width: "fit-content",
+      }}
+    >
       <Head>
         <title>Pokedex</title>
         <meta name="description" content="Get information about all Pokemon" />
@@ -106,6 +113,7 @@ const Home: NextPage = () => {
                 display: "flex",
                 flexDirection: "row",
                 gap: "1em",
+                width: "fit-content",
                 marginTop: "1em",
               }}
             >
@@ -116,7 +124,6 @@ const Home: NextPage = () => {
                     color: "#aab0bf",
                     padding: "1em",
                     borderRadius: "1em",
-                    width: "30em",
                     borderStyle: "none",
                   }}
                   type="text"
@@ -134,9 +141,10 @@ const Home: NextPage = () => {
         <div
           key={next}
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "1em",
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "2em",
           }}
         >
           {filteredData.map((data: IPokemon, idx: number) => (

@@ -56,14 +56,19 @@ export const PokemonStats = () => {
     <div>
       <Tabs>
         <Tab title="About">
-          {
-            species.flavor_text_entries.find(
-              (l: FlavorTextEntry) => l.language.name === "en"
-            )?.flavor_text
-          }
+          <div style={{ maxWidth: "450px" }}>
+            {
+              species.flavor_text_entries.find(
+                (l: FlavorTextEntry) => l.language.name === "en"
+              )?.flavor_text
+            }
+          </div>
         </Tab>
-        <Tab title="Types">
-          {" "}
+        <Tab title="Cards"></Tab>
+        <Tab title="Evolutions">
+          <EvolutionChain chainURL={species.evolution_chain.url} />
+        </Tab>
+        <Tab title="Details">
           {pokemon.types.map((t: Type, idx: number) => {
             return (
               <div
@@ -84,11 +89,6 @@ export const PokemonStats = () => {
               </div>
             );
           })}
-        </Tab>
-        <Tab title="Evolutions">
-          <EvolutionChain chainURL={species.evolution_chain.url} />
-        </Tab>
-        <Tab title="Details">
           <Stats stats={stats} />
         </Tab>
       </Tabs>

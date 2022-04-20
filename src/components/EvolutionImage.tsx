@@ -19,14 +19,15 @@ export const EvolutionImage: React.FC<EvolutionImageProps> = ({
       <Link href={`/pokemon/${species.name}`} passHref>
         <div
           style={{
-            background: `radial-gradient(#fafafa,50%, ${bgColor[0].medium})`,
+            background: bgColor[0].light,
+            borderRadius: "100%",
+            padding: "1em",
           }}
         >
           <img
             key={species.name}
             src={`${IMG_URL + species.url.split("/").slice(-2, -1)[0]}.webp`}
-            height={80}
-            width={80}
+            width="80"
             alt={species.name}
           />
         </div>

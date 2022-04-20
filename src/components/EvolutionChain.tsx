@@ -27,7 +27,15 @@ export const EvolutionChain: React.FC<EvolutionChainProps> = ({ chainURL }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chainURL]);
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "row",
+        alignItems: "center",
+        gap: "1em",
+      }}
+    >
       {typeof data?.chain.species !== "undefined" && (
         <EvolutionImage
           species={data?.chain.species}
