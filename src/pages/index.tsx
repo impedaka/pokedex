@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-key */
+import { Navbar } from "@/components/Navbar";
 import PokemonCard from "@/components/PokemonCard";
 import { usePokemonStore } from "global-stores/PokemonStore";
 import type { NextPage } from "next";
@@ -62,7 +63,7 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-    <>
+    <div style={{ backgroundColor: "#f5fbfb", padding: "3em" }}>
       <Head>
         <title>Pokedex</title>
         <meta name="description" content="Get information about all Pokemon" />
@@ -75,7 +76,15 @@ const Home: NextPage = () => {
         loader={<h3></h3>}
         endMessage={<div></div>}
       >
-        <div key={next}>
+        <Navbar />
+        <div
+          key={next}
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "1em",
+          }}
+        >
           {pokemon.map((data: IPokemon, idx: number) => (
             <PokemonCard
               key={idx}
@@ -86,7 +95,7 @@ const Home: NextPage = () => {
           ))}
         </div>
       </InfiniteScroll>
-    </>
+    </div>
   );
 };
 

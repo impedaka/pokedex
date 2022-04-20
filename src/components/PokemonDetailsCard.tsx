@@ -5,7 +5,7 @@ import { PokemonStats } from "./PokemonStats";
 
 export const PokemonDetailsCard = () => {
   return (
-    <div>
+    <div style={{ backgroundColor: "#f5fbfb", padding: "5em" }}>
       <PokemonImage />
       <PokemonStats />
     </div>

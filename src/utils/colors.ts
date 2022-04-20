@@ -2,19 +2,19 @@ import { ColorProps } from "types/types";
 
 export const PokemonTypeColor: ColorProps = {
   normal: {
-    light: "#CDCDB9",
+    light: "#e0e0c1",
     medium: "#C4C4A4",
   },
   fire: {
-    light: "#F4934D",
+    light: "#efd3bb",
     medium: "#F08030",
   },
   fighting: {
-    light: "#BA5852",
+    light: "#d1aca9",
     medium: "#C03028",
   },
   water: {
-    light: "#85A5F0",
+    light: "#c3cfeb",
     medium: "#6890F0",
   },
   flying: {
@@ -22,27 +22,27 @@ export const PokemonTypeColor: ColorProps = {
     medium: "#A890F0",
   },
   grass: {
-    light: "#99D07D",
-    medium: "#78C850",
+    light: "#c4e3d4",
+    medium: "#bedcdc",
   },
   poison: {
-    light: "#A768A7",
+    light: "#e0bfe0",
     medium: "#A040A0",
   },
   electric: {
-    light: "#F9DF78",
+    light: "#f7e9b2",
     medium: "#F8D030",
   },
   ground: {
-    light: "#EDD081",
+    light: "#dbcda7",
     medium: "#E0C068",
   },
   psychic: {
-    light: "#F47DA1",
+    light: "#f0a8be",
     medium: "#F85888",
   },
   rock: {
-    light: "#C5B059",
+    light: "#c4b987",
     medium: "#B8A038",
   },
   ice: {
@@ -50,19 +50,19 @@ export const PokemonTypeColor: ColorProps = {
     medium: "#98D8D8",
   },
   bug: {
-    light: "#B5C534",
+    light: "#e4ebb2",
     medium: "#A8B820",
   },
   dragon: {
-    light: "#8656FA",
+    light: "#cab8f5",
     medium: "#7038F8",
   },
   ghost: {
-    light: "#7D6B9B",
+    light: "#afa3c4",
     medium: "#705898",
   },
   dark: {
-    light: "#756459",
+    light: "#baaba2",
     medium: "#705848",
   },
   steel: {
@@ -70,7 +70,7 @@ export const PokemonTypeColor: ColorProps = {
     medium: "#B8B8D0",
   },
   fairy: {
-    light: "#EFA7B7",
+    light: "#e8b7c2",
     medium: "#EE99AC",
   },
 };

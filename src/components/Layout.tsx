@@ -8,9 +8,15 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div>
-      <Navbar />
-      {children}
-    </div>
+    <>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        {children}
+      </div>
+    </>
   );
 };

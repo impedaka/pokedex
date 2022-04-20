@@ -1,12 +1,14 @@
 /* eslint-disable react/jsx-key */
+import { table } from "console";
 import { usePokemonDetailStore } from "global-stores/PokemonDetailStore";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Ability, Type } from "types/Pokemon";
 import { FlavorTextEntry, Genera } from "types/PokemonSpecies";
 import { capitalizeFirstLetter } from "utils/capatilize";
 import { PokemonTypeColor } from "utils/colors";
 import { EvolutionChain } from "./EvolutionChain";
 import { Stats } from "./Stats";
+import Tab from "./Tabs";
 
 export const PokemonStats = () => {
   const pokemon = usePokemonDetailStore((state) => state.pokemon);
@@ -77,6 +79,15 @@ export const PokemonStats = () => {
       </div>
       <Stats stats={stats} />
       <EvolutionChain chainURL={species.evolution_chain.url} />
+      <div>
+        <Tab active={1}>
+          {stats.map((tab: any, idx: number) => (
+            <Tab.TabPane key={`Tab-${idx}`} tab={tab.title}>
+              {tab.content}
+            </Tab.TabPane>
+          ))}
+        </Tab>
+      </div>
     </div>
   );
 };
