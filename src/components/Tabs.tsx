@@ -10,7 +10,13 @@ const Tabs: React.FC<Props> = ({ children }) => {
 
   return (
     <div>
-      <ul>
+      <ul
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          flexDirection: "row",
+        }}
+      >
         {children.map((item, index) => (
           <TabTitle
             key={index}

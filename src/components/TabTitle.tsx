@@ -12,9 +12,11 @@ const TabTitle: React.FC<Props> = ({ title, setSelectedTab, index }) => {
   }, [setSelectedTab, index]);
 
   return (
-    <li>
-      <button onClick={onClick}>{title}</button>
-    </li>
+    <div>
+      <h3 onClick={onClick}>
+        <a href="#">{title}</a>
+      </h3>
+    </div>
   );
 };
 

@@ -71,7 +71,13 @@ export const PokemonStats = () => {
                 style={{
                   backgroundColor: Object.entries(PokemonTypeColor).filter(
                     ([key, _]) => key === t.type.name
-                  )[0][1].light,
+                  )[0][1].medium,
+                  color: "white",
+                  borderRadius: "1em",
+                  width: "5em",
+                  display: "flex",
+
+                  justifyContent: "center",
                 }}
               >
                 <p>{t.type.name.toUpperCase()}</p>

@@ -5,7 +5,7 @@ type Props = {
 };
 
 const Tab: React.FC<Props> = ({ children }) => {
-  return <div>{children}</div>;
+  return <div style={{ marginTop: "3em" }}>{children}</div>;
 };
 
 export default Tab;

@@ -11,10 +11,21 @@ export const Stats: React.FC<StateProps> = ({ stats }) => {
     <ul>
       {stats.map((s, index) => {
         return (
-          <li key={index}>
-            <span key={index}>{s.title}</span>
-            <span key={index}>{s.content}</span>
-          </li>
+          <>
+            <div
+              style={{
+                display: "flex",
+                marginBottom: "0.5em",
+
+                justifyContent: "space-between",
+              }}
+              key={index}
+            >
+              <h4 key={index}>{s.title}</h4>
+              <span key={index}>{s.content}</span>
+              <span />
+            </div>
+          </>
         );
       })}
     </ul>

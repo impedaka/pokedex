@@ -1,10 +1,12 @@
 /* eslint-disable react/jsx-key */
-import { Navbar } from "@/components/Navbar";
+import { IconContext } from "react-icons";
+import { CgOptions } from "react-icons/cg";
 import PokemonCard from "@/components/PokemonCard";
 import { usePokemonStore } from "global-stores/PokemonStore";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { IPokemon } from "types/Pokemon";
 
@@ -20,6 +22,7 @@ export interface PokemonIDList {
   results: Result[];
 }
 const Home: NextPage = () => {
+  const [query, setQuery] = useState("");
   const { pokemon, next } = usePokemonStore((state) => ({
     pokemon: state.pokemon,
     next: state.next,
@@ -62,6 +65,13 @@ const Home: NextPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const filteredData = pokemon.filter((el) => {
+    if (query == "") {
+      return el;
+    } else {
+      return el.name.toLowerCase().includes(query);
+    }
+  });
   return (
     <div style={{ backgroundColor: "#f5fbfb", padding: "3em" }}>
       <Head>
@@ -76,7 +86,51 @@ const Home: NextPage = () => {
         loader={<h3></h3>}
         endMessage={<div></div>}
       >
-        <Navbar />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            margin: "5em 0",
+            minWidth: "100%",
+          }}
+        >
+          <div>
+            <Link href="/" passHref>
+              <h1 style={{ fontSize: "3em" }}>Pokédex</h1>
+            </Link>
+            <h3>
+              Search for a Pokemon by name or using its National Pokedex number.
+            </h3>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                gap: "1em",
+                marginTop: "1em",
+              }}
+            >
+              <form action="/" method="get">
+                <input
+                  style={{
+                    backgroundColor: "#ebf3f5",
+                    color: "#aab0bf",
+                    padding: "1em",
+                    borderRadius: "1em",
+                    width: "30em",
+                    borderStyle: "none",
+                  }}
+                  type="text"
+                  id="header-search"
+                  placeholder="🔍 Name or number"
+                  onChange={(event) => setQuery(event.target.value)}
+                />
+              </form>
+              <IconContext.Provider value={{ color: "#5d5e7d", size: "3.5em" }}>
+                <CgOptions />
+              </IconContext.Provider>
+            </div>
+          </div>
+        </div>
         <div
           key={next}
           style={{
@@ -85,7 +139,7 @@ const Home: NextPage = () => {
             gap: "1em",
           }}
         >
-          {pokemon.map((data: IPokemon, idx: number) => (
+          {filteredData.map((data: IPokemon, idx: number) => (
             <PokemonCard
               key={idx}
               id={data.id}
