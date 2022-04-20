@@ -1,43 +1,28 @@
-import React, { useState, useEffect, FC } from "react";
-const Tab: FC = ({ children, active = 0 }) => {
-  const [activeTab, setActiveTab] = useState(active);
-  const [tabsData, setTabsData] = useState([]);
+import React, { ReactElement, useState } from "react";
+import TabTitle from "./TabTitle";
 
-  useEffect(() => {
-    let data: any = [];
+type Props = {
+  children: ReactElement[];
+};
 
-    React.Children.forEach(children, (element) => {
-      if (!React.isValidElement(element)) return;
-      const {
-        props: { tab, children },
-      } = element;
-      data.push({ tab, children });
-    });
-    setTabsData(data);
-  }, [children]);
+const Tabs: React.FC<Props> = ({ children }) => {
+  const [selectedTab, setSelectedTab] = useState(0);
 
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-        }}
-      >
-        {tabsData.map(({ tab }, idx) => (
-          <div>
-            <a onClick={() => setActiveTab(idx)}>{tab}</a>
-          </div>
+      <ul>
+        {children.map((item, index) => (
+          <TabTitle
+            key={index}
+            title={item.props.title}
+            index={index}
+            setSelectedTab={setSelectedTab}
+          />
         ))}
-      </div>
-      <div>{tabsData[activeTab] && tabsData[activeTab].children}</div>
+      </ul>
+      {children[selectedTab]}
     </div>
   );
 };
-const TabPane = ({ children }) => {
-  return { children };
-};
-Tab.TabPane = TabPane;
 
-export default Tab;
+export default Tabs;

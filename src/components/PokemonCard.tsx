@@ -5,7 +5,6 @@ import Link from "next/link";
 import React, { useMemo } from "react";
 import { Type } from "types/Pokemon";
 import { capitalizeFirstLetter } from "utils/capatilize";
-import { PokemonTypeColor } from "utils/colors";
 import { IMG_URL } from "utils/constants";
 import { getBackgroundColors } from "utils/getBackgroundColors";
 

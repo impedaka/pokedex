@@ -1,14 +1,14 @@
 /* eslint-disable react/jsx-key */
-import { table } from "console";
 import { usePokemonDetailStore } from "global-stores/PokemonDetailStore";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Ability, Type } from "types/Pokemon";
 import { FlavorTextEntry, Genera } from "types/PokemonSpecies";
 import { capitalizeFirstLetter } from "utils/capatilize";
 import { PokemonTypeColor } from "utils/colors";
 import { EvolutionChain } from "./EvolutionChain";
 import { Stats } from "./Stats";
-import Tab from "./Tabs";
+import Tab from "./Tab";
+import Tabs from "./Tabs";
 
 export const PokemonStats = () => {
   const pokemon = usePokemonDetailStore((state) => state.pokemon);
@@ -52,19 +52,18 @@ export const PokemonStats = () => {
     },
   ];
 
-  const tabContent = [
-    {
-      title: "Details",
-      content: <Stats stats={stats} />,
-    },
-    {
-      title: "Evolutions",
-      content: <EvolutionChain chainURL={species.evolution_chain.url} />,
-    },
-    {
-      title: "Types",
-      content: (
-        <div>
+  return (
+    <div>
+      <Tabs>
+        <Tab title="About">
+          {
+            species.flavor_text_entries.find(
+              (l: FlavorTextEntry) => l.language.name === "en"
+            )?.flavor_text
+          }
+        </Tab>
+        <Tab title="Types">
+          {" "}
           {pokemon.types.map((t: Type, idx: number) => {
             return (
               <div
@@ -79,25 +78,14 @@ export const PokemonStats = () => {
               </div>
             );
           })}
-        </div>
-      ),
-    },
-    {
-      title: "About",
-      content: species.flavor_text_entries.find(
-        (l: FlavorTextEntry) => l.language.name === "en"
-      )?.flavor_text,
-    },
-  ];
-  return (
-    <div>
-      <Tab active={1}>
-        {tabContent.map((tab: any, idx: number) => (
-          <Tab.TabPane key={`Tab-${idx}`} tab={tab.title}>
-            {tab.content}
-          </Tab.TabPane>
-        ))}
-      </Tab>
+        </Tab>
+        <Tab title="Evolutions">
+          <EvolutionChain chainURL={species.evolution_chain.url} />
+        </Tab>
+        <Tab title="Details">
+          <Stats stats={stats} />
+        </Tab>
+      </Tabs>
     </div>
   );
 };
