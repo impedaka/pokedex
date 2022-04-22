@@ -9,11 +9,12 @@ import { EvolutionChain } from "./EvolutionChain";
 import { Stats } from "./Stats";
 import Tab from "./Tab";
 import Tabs from "./Tabs";
-
-export const PokemonStats = () => {
+import { GetServerSideProps } from "next";
+export const PokemonStats = ({ cards }) => {
   const pokemon = usePokemonDetailStore((state) => state.pokemon);
   const species = usePokemonDetailStore((state) => state.species);
 
+  console.log(cards);
   const stats = [
     {
       title: "Species",
@@ -64,31 +65,32 @@ export const PokemonStats = () => {
             }
           </div>
         </Tab>
-        <Tab title="Cards"></Tab>
         <Tab title="Evolutions">
           <EvolutionChain chainURL={species.evolution_chain.url} />
         </Tab>
         <Tab title="Details">
-          {pokemon.types.map((t: Type, idx: number) => {
-            return (
-              <div
-                key={idx}
-                style={{
-                  backgroundColor: Object.entries(PokemonTypeColor).filter(
-                    ([key, _]) => key === t.type.name
-                  )[0][1].medium,
-                  color: "white",
-                  borderRadius: "1em",
-                  width: "5em",
-                  display: "flex",
+          <div style={{ display: "flex", flexDirection: "row", gap: "2em" }}>
+            {pokemon.types.map((t: Type, idx: number) => {
+              return (
+                <div
+                  key={idx}
+                  style={{
+                    backgroundColor: Object.entries(PokemonTypeColor).filter(
+                      ([key, _]) => key === t.type.name
+                    )[0][1].medium,
+                    color: "white",
+                    borderRadius: "1em",
+                    width: "100%",
+                    display: "flex",
 
-                  justifyContent: "center",
-                }}
-              >
-                <p>{t.type.name.toUpperCase()}</p>
-              </div>
-            );
-          })}
+                    justifyContent: "center",
+                  }}
+                >
+                  <p>{t.type.name.toUpperCase()}</p>
+                </div>
+              );
+            })}
+          </div>
           <Stats stats={stats} />
         </Tab>
       </Tabs>

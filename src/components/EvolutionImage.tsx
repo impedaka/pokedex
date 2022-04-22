@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
 import React from "react";
-
+import { capitalizeFirstLetter } from "../utils/capatilize";
 import { Species } from "types/EvolutionChain";
 import { IMG_URL } from "utils/constants";
 import Link from "next/link";
@@ -15,7 +15,13 @@ export const EvolutionImage: React.FC<EvolutionImageProps> = ({
   bgColor,
 }) => {
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       <Link href={`/pokemon/${species.name}`} passHref>
         <div
           style={{
@@ -32,7 +38,7 @@ export const EvolutionImage: React.FC<EvolutionImageProps> = ({
           />
         </div>
       </Link>
-      <p>{species.name}</p>
+      <h4>{capitalizeFirstLetter(species.name)}</h4>
     </div>
   );
 };
