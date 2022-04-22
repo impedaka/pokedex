@@ -9,12 +9,11 @@ import { EvolutionChain } from "./EvolutionChain";
 import { Stats } from "./Stats";
 import Tab from "./Tab";
 import Tabs from "./Tabs";
-import { GetServerSideProps } from "next";
-export const PokemonStats = ({ cards }) => {
+
+export const PokemonStats = () => {
   const pokemon = usePokemonDetailStore((state) => state.pokemon);
   const species = usePokemonDetailStore((state) => state.species);
 
-  console.log(cards);
   const stats = [
     {
       title: "Species",
